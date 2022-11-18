@@ -85,13 +85,13 @@ const Navbar = () => {
             </HStack>
           </HStack>
 
-          {isLogin && (
-            <Button bg="red.500" color="white" _hover={{ color: "black" }}>
+          {!isLogin && (
+            <Button bg="red.500" color="white" _hover={{ color: "black" }} onClick={()=> navigate('/login')}>
               Login
             </Button>
           )}
 
-          {!isLogin && (
+          {isLogin && (
 
            
             <Flex alignItems={"center"}  justifyContent='space-around' w={{base:'30%' , md:'15%', lg:'10%'}}>
