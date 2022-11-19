@@ -60,7 +60,10 @@ const Navbar = () => {
                 fontWeight="500"
                 fontStyle="italic"
                 cursor="pointer"
-                _hover={{ color: "red.400" }}
+                _hover={{ color: "red" }}
+                fontSize ='xl'
+                fontFamily='cursive'
+                onClick={()=> navigate('/headphones')}
               >
                 Headphones
               </Text>
@@ -69,18 +72,25 @@ const Navbar = () => {
                 fontWeight="500"
                 fontStyle="italic"
                 cursor="pointer"
-                _hover={{ color: "red.400" }}
+                _hover={{ color: "red" }}
+                fontSize ='xl'
+                fontFamily='cursive'
+                onClick={()=> navigate('/headphones')}
               >
-                Headphones
+               Earphones
+
               </Text>
               <Text
                 color="white"
                 fontWeight="500"
                 fontStyle="italic"
                 cursor="pointer"
-                _hover={{ color: "red.400" }}
+                _hover={{ color: "red" }}
+                fontSize ='xl'
+                fontFamily='cursive'
+                onClick={()=> navigate('/headphones')}
               >
-                Headphones
+                Speakers
               </Text>
             </HStack>
           </HStack>
