@@ -1,8 +1,11 @@
 import React from 'react'
 import { Box, Image, Text, Button } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 
 const ProductCard = (elem) => {
+
   return (
+   
     <Box
     display="flex"
     flexDirection="column"
@@ -13,7 +16,9 @@ const ProductCard = (elem) => {
     borderRadius="xl"
     cursor="pointer"
   >
-    <Box h="70%">
+    <Link to = {`/product/${elem._id}`} >
+    
+    <Box h="70%" onClick={()=> console.log(elem._id)}>
       <Image src={elem.Picture} />
     </Box>
 
@@ -47,6 +52,7 @@ const ProductCard = (elem) => {
     <Text fontSize="md" textAlign="left" color="gray.600" mt="3">
       You Save: ₹{elem.Saving} ({elem.Discount}%)
     </Text>
+    </Link>
 
     <Button
       w="100%"
@@ -57,6 +63,7 @@ const ProductCard = (elem) => {
     >
       ADD TO CART
     </Button>
+
   </Box>
   )
 }

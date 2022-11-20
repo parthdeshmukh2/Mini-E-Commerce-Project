@@ -96,7 +96,7 @@ const Navbar = () => {
           </HStack>
 
           {!isLogin && (
-            <Button bg="red.500" color="white" _hover={{ color: "black" }} onClick={()=> navigate('/login')}>
+            <Button bg="red" color="white" _hover={{ color: "black" }} onClick={()=> navigate('/login')}>
               Login
             </Button>
           )}

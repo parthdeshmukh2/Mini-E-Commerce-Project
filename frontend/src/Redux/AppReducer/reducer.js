@@ -19,7 +19,7 @@ export const reducer = (state=initialState, action)=>{
             return {...state, isLoading:false, isError:false, data:payload}
 
             case types.GET_DATA_FAILURE:
-                return {...state, isLoading:false, isError:false}
+                return {...state, isLoading:false, isError:true}
 
         default : return state;
     }

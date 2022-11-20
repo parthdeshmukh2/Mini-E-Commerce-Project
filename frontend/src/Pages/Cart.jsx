@@ -1,7 +1,8 @@
-import { Box, Image , Text, Button} from "@chakra-ui/react";
+import { Box, Image , Text, Button, Input} from "@chakra-ui/react";
 import React from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import { useNavigate } from "react-router-dom";
 
 const cartItem = [
   {
@@ -43,6 +44,7 @@ const cartItem = [
 ];
 
 const Cart = () => {
+  const navigate = useNavigate();
   return (
     <Box>
       <Navbar />
@@ -53,7 +55,8 @@ const Cart = () => {
         display="grid"
         gridTemplateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
         mt="16"
-        border="1px solid red"
+        gap='20'
+      
       >
         <Box>
 
@@ -76,6 +79,7 @@ const Cart = () => {
         <Box w='30%' display='flex' flexDirection='column'  >
         <Text fontSize='xl' fontWeight='700' fontStyle='italic' fontFamily='cursive'> {elem.Title}</Text>
           <Text fontSize='xl' fontStyle='italic' fontFamily='cursive'>Price: ₹{elem.Price}</Text>
+          <Button fontSize='xl' bg='red' color='white' mt='4'>Delete</Button>
          
         </Box>
         <Box display='flex' alignItems='center' >
@@ -91,6 +95,39 @@ const Cart = () => {
         })}
          </Box>
        
+<Box  >
+    <Box bg='white' mt='8' rounded='xl' p='4' w={{base:'90%', md:'90%', lg:'70%'}} m='auto'>
+    <Text fontSize='2xl' fontStyle='italic' fontFamily='cursive' fontWeight='600'>Apply Coupon Code</Text>
+      <Input placeholder='Enter Coupon Code'  mt='4' />
+      <Button w='90%' mt='4' bg='red' color='white'>Apply Coupon </Button>
+
+    </Box>
+
+  <Box bg='white' rounded='xl' p='4' w={{base:'90%', md:'90%', lg:'70%'}} m='auto'  mt='8'> 
+  <Text fontSize='2xl' fontStyle='italic' fontFamily='cursive' fontWeight='600'>Cart Details</Text>
+  <Box display='flex' justifyContent='space-between' mt='4'>
+    <Text fontSize='xl' fontWeight='500' fontFamily='cursive'>Total No. Of Items</Text>
+    <Text fontSize='xl' fontWeight='500' fontFamily='cursive'>4</Text>
+  </Box>
+  <Box display='flex' justifyContent='space-between' mt='4'>
+    <Text fontSize='xl' fontWeight='500' fontFamily='cursive'>Total Price</Text>
+    <Text fontSize='xl' fontWeight='500' fontFamily='cursive'>4</Text>
+  </Box>
+  <Box display='flex' justifyContent='space-between' borderBottom='1px solid gray' mt='4'>
+    <Text fontSize='xl' fontWeight='500' fontFamily='cursive' color='green'>Discount Offerd</Text>
+    <Text fontSize='xl' fontWeight='500' fontFamily='cursive' color='green'>4</Text>
+  </Box>
+  <Box display='flex' justifyContent='space-between' mt='4'>
+    <Text fontSize='xl' fontWeight='700' fontFamily='cursive' color='red' >Total </Text>
+    <Text fontSize='xl' fontWeight='700' fontFamily='cursive ' color='red'>4</Text>
+  </Box>
+
+  <Button w='90%' mt='4' bg='red' color='white' onClick={()=> navigate('/payments')}>Place Order</Button>
+  </Box>
+ 
+
+</Box>
+
       </Box>
 
       <Footer />
