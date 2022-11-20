@@ -15,6 +15,6 @@ const speakerSchema = mongoose.Schema({
 
 });
 
-const SpeakerModel = mongoose.model("speaker", speakerSchema);
+const SpeakerModels = mongoose.model("speaker", speakerSchema);
 
 module.exports = SpeakerModels;

@@ -2,13 +2,20 @@ const express = require('express');
 const cors = require('cors');
 const connection = require('./Config/db.js');
 const HeadPhonesController = require('./Routes/headphones.Routes.js');
+const EarphonesController = require('./Routes/earphones.Routes');
+const SpeakerController = require('./Routes/speaker.Routes');
 const HeadphonesModel = require('./Models/headphones.Model');
+const userController = require('./Routes/user.Routes.js');
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use('/user', userController);
+
 app.use('/headphones' , HeadPhonesController);
+app.use('/earphones' , EarphonesController);
+app.use('/speaker' , SpeakerController);
 app.get('/:id', async(req, res)=>{
   
     const {id} = req.params;
