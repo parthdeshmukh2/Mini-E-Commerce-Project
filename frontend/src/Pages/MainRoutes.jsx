@@ -1,9 +1,11 @@
 import React from 'react'
 import {Routes, Route} from "react-router-dom";
+import Cart from './Cart';
 import Headphones from './Headphones';
 import HomePage from './HomePage';
 import Login from './Login';
 import Payments from './Payments';
+import ProductPage from './ProductPage';
 import SignUp from './SignUp';
 
 const MainRoutes = () => {
@@ -14,8 +16,8 @@ const MainRoutes = () => {
     <Route  path='/signup' element={<SignUp/>} />
     <Route  path='/payments' element={<Payments/>} />
     <Route  path='/headphones' element={<Headphones/>} />
-
-  
+    <Route  path='/product' element={<ProductPage/>}  />
+    <Route  path='/cart' element={<Cart/>}  />
     </Routes>
   )
 }
