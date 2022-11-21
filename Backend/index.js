@@ -6,6 +6,8 @@ const EarphonesController = require('./Routes/earphones.Routes');
 const SpeakerController = require('./Routes/speaker.Routes');
 const HeadphonesModel = require('./Models/headphones.Model');
 const userController = require('./Routes/user.Routes.js');
+const EarphonesModel = require('./Models/earphones.Model.js');
+const SpeakerModels = require('./Models/speaker.Model.js');
 
 const app = express();
 app.use(express.json());
@@ -19,7 +21,7 @@ app.use('/speaker' , SpeakerController);
 app.get('/:id', async(req, res)=>{
   
     const {id} = req.params;
-    const result =await  HeadphonesModel.findOne({_id:id});
+    const result =await  HeadphonesModel.findOne({_id:id}) || await  EarphonesModel.findOne({_id:id}) || await  SpeakerModels.findOne({_id:id});
     res.send(result)
 
 });

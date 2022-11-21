@@ -75,7 +75,7 @@ const Navbar = () => {
                 _hover={{ color: "red" }}
                 fontSize ='xl'
                 fontFamily='cursive'
-                onClick={()=> navigate('/headphones')}
+                onClick={()=> navigate('/earphones')}
               >
                Earphones
 
@@ -88,7 +88,7 @@ const Navbar = () => {
                 _hover={{ color: "red" }}
                 fontSize ='xl'
                 fontFamily='cursive'
-                onClick={()=> navigate('/headphones')}
+                onClick={()=> navigate('/speakers')}
               >
                 Speakers
               </Text>
