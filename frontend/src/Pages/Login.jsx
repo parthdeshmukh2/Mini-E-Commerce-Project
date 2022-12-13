@@ -26,7 +26,7 @@ const Login = () => {
  
    
   }
-  console.log(location);
+  
 
   return (
     <Box>

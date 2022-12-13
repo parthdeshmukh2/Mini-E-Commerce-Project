@@ -11,9 +11,34 @@ import "../Styles/styles.css";
 
 import { Pagination, Navigation } from "swiper";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
+import { useSelector} from "react-redux";
 
 const Slider = ({data}) => {
+
+  const isLogin = useSelector((store)=> store.AuthReducer.isAuth);
+  const token = useSelector((store)=> store.AuthReducer.token);
+
+
+  const handleCart = (payload) => {
+    if (isLogin) {
+      axios
+        .post("http://localhost:8080/cart/post", payload, {
+          headers: {
+            token: "Bearer " + token,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      alert("Please Login First");
+    }
+  };
+
+ 
   return (
     <Box m="auto" mt="8" w="90%">
       <Swiper
@@ -100,6 +125,7 @@ const Slider = ({data}) => {
                   mt="4"
                   mb="-8"
                   _hover={{ bg: "red", color: "white" }}
+                  onClick={()=>handleCart(elem)}
                 >
                   ADD TO CART
                 </Button>

@@ -20,11 +20,14 @@ import {
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import {BsFillCartFill} from "react-icons/bs";
+import {useSelector} from "react-redux"
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isLogin, setIsLogin] = useState(false);
+  const isLogin = useSelector((store)=> store.AuthReducer.isAuth);
   const navigate = useNavigate();
+
+
 
   return (
     <>
@@ -106,7 +109,12 @@ const Navbar = () => {
            
             <Flex alignItems={"center"}  justifyContent='space-around' w={{base:'30%' , md:'15%', lg:'10%'}}>
                 {/* <Text color='white'>feiu  dhbuh</Text> */}
-                <BsFillCartFill size='20%' color='white' />
+                
+                <BsFillCartFill size='20%' color='white' onClick={()=> navigate('/cart')} />
+                <Text bg='red' p='1' textAlign='center' rounded='3xl' pb='2' position='relative' color='white' cursor='pointer' fontWeight='600' left='-5' h='6' >5</Text>
+
+                
+              
                 {/* <Image color='white' src='https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Cart-1.png?v=1663762989https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Cart-1.png?v=1663762989' h='30%' w='30%' mr='4' /> */}
               <Menu>
                 <MenuButton

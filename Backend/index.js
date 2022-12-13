@@ -8,6 +8,8 @@ const HeadphonesModel = require('./Models/headphones.Model');
 const userController = require('./Routes/user.Routes.js');
 const EarphonesModel = require('./Models/earphones.Model.js');
 const SpeakerModels = require('./Models/speaker.Model.js');
+const authentication = require('./Middlewares/Authentication.js');
+const CartController = require('./Routes/cart.Routes.js');
 
 const app = express();
 app.use(express.json());
@@ -18,6 +20,10 @@ app.use('/user', userController);
 app.use('/headphones' , HeadPhonesController);
 app.use('/earphones' , EarphonesController);
 app.use('/speaker' , SpeakerController);
+
+app.use('/cart', authentication, CartController);
+
+
 app.get('/:id', async(req, res)=>{
   
     const {id} = req.params;

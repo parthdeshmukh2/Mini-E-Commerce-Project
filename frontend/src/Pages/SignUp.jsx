@@ -16,7 +16,7 @@ const SignUp = () => {
     const handleSubmit = () => {
       const body = {
         Name:name,
-        Email:email,
+        Email:email, 
         Password:password,
         LastName:lastName
       }
@@ -51,7 +51,7 @@ const SignUp = () => {
       <Input  placeholder="Enter Password" mb="4" bg="white" type='password' onChange={(e)=> setPassword(e.target.value)}/>
 
       <Button w="30%" m="auto" bg="red.500" mb="4" color="white" onClick={handleSubmit}>
-        Login
+        Register
       </Button>
 
       <Box display="flex" m="auto">

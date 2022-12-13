@@ -14,6 +14,8 @@ const Headphones = () => {
   const headPhonesData = useSelector((store) => store.AppReducer.data);
   const isLoading = useSelector((store) => store.AppReducer.isLoading);
 
+  
+
   useEffect(() => {
     dispatch(getData("http://localhost:8080/headphones"));
   }, []);
