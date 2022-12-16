@@ -5,7 +5,7 @@ export const getCartData = (token) => (dispatch) => {
   dispatch({ type: types.CART_DATA_REQUEST });
 
   axios
-    .get("http://localhost:8080/cart", {
+    .get("https://ecomm-server.onrender.com/cart", {
       headers:{
         "token": "Bearer " + token,
         "Content-type":'application/json'

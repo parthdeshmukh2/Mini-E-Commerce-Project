@@ -62,7 +62,7 @@ const Cart = () => {
 
   const handleDiscount = () => {
     if(coupon == "Masai30"){
-      setDiscounPrice(total*0.3.toFixed(2));
+      setDiscounPrice(total*0.3);
       setCoupon("");
      
     }
@@ -73,7 +73,7 @@ const Cart = () => {
 
   useEffect(()=>{
     dispatch(getCartData(token));
-  // setCartItem(cartData);
+
   
   },[cartData])
 

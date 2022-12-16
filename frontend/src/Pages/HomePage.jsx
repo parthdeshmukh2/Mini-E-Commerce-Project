@@ -12,9 +12,9 @@ import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
 
-const headphonesData = useFetch("http://localhost:8080/headphones");
-const earphonesData = useFetch("http://localhost:8080/earphones");
-const speakerData = useFetch("http://localhost:8080/speaker");
+const headphonesData = useFetch("https://ecomm-server.onrender.com/headphones");
+const earphonesData = useFetch("https://ecomm-server.onrender.com/earphones");
+const speakerData = useFetch("https://ecomm-server.onrender.com/speaker");
 
 const navigate = useNavigate();
 

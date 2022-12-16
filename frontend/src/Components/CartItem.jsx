@@ -12,7 +12,7 @@ const CartItem = (elem) => {
        
         const id = elem._id;
       
-        axios.delete(`http://localhost:8080/cart/delete/${id}`, {
+        axios.delete(`https://ecomm-server.onrender.com/cart/delete/${id}`, {
             headers:{
                 "token": "Bearer " + token,
                 "Content-type":'application/json'

@@ -26,6 +26,7 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isLogin = useSelector((store)=> store.AuthReducer.isAuth);
   const navigate = useNavigate();
+  const cartData = useSelector((store)=> store.CartReducer.cartData);
 
 
 
@@ -111,7 +112,7 @@ const Navbar = () => {
                 {/* <Text color='white'>feiu  dhbuh</Text> */}
                 
                 <BsFillCartFill size='20%' color='white' onClick={()=> navigate('/cart')} />
-                <Text bg='red' p='1' textAlign='center' rounded='3xl' pb='2' position='relative' color='white' cursor='pointer' fontWeight='600' left='-5' h='6' >5</Text>
+                <Text bg='red' p='1' textAlign='center' rounded='3xl' pb='2' position='relative' color='white' cursor='pointer' fontWeight='600' left='-5' h='6' >{cartData.length}</Text>
 
                 
               

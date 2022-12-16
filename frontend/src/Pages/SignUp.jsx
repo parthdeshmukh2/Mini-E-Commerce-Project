@@ -20,7 +20,7 @@ const SignUp = () => {
         Password:password,
         LastName:lastName
       }
-      axios.post("http://localhost:8080/user/register", body)
+      axios.post("https://ecomm-server.onrender.com/user/register", body)
       .then((res)=> {
         alert("Registered SuccessFully");
         navigate('/login');

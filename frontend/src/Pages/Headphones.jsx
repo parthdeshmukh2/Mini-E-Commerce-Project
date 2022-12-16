@@ -12,14 +12,45 @@ const Headphones = () => {
 
   const dispatch = useDispatch();
   const headPhonesData = useSelector((store) => store.AppReducer.data);
-  const isLoading = useSelector((store) => store.AppReducer.isLoading);
 
-  
+  const [headphones, setHeadphones] = useState([]);
+
+  const [filter, setFilter] = useState("");
+
+  const handleSort = (value) => {
+    if (value == "low") {
+      console.log(value);
+      let sort = [...headphones].sort((a, b) => a.Price - b.Price);
+      setHeadphones(sort);
+    } else if (value == "high") {
+      let sort = [...headphones].sort((a, b) => b.Price - a.Price);
+      setHeadphones(sort);
+    }
+  };
+
+  const handleFilter = (value) => {
+    console.log(value);
+    if (value === "BLUETOOTH HEADPHONES") {
+      const filteredData = [...headphones].filter(
+        (elem) => elem.Category === "BLUETOOTH HEADPHONES"
+      );
+      setHeadphones(filteredData);
+    } else if (value === "Wired Headphones") {
+      const filteredData = [...headphones].filter(
+        (elem) => elem.Category === "Wired Headphones"
+      );
+      setHeadphones(filteredData);
+    }
+  };
 
   useEffect(() => {
-    dispatch(getData("http://localhost:8080/headphones"));
+    dispatch(getData("https://ecomm-server.onrender.com/headphones"));
   }, []);
-  console.log(headPhonesData, isLoading);
+
+  useEffect(() => {
+    setHeadphones(headPhonesData);
+  }, []);
+
   return (
     <Box>
       <Navbar />
@@ -44,9 +75,15 @@ const Headphones = () => {
           fontFamily="cursive"
         >
           <Text mr="4"> Filter By : </Text>
-          <Select w="50%" bg="white" color="black" placeholder="Type">
-            <option value=""></option>
-            <option value=""></option>
+          <Select
+            w="50%"
+            bg="white"
+            color="black"
+            placeholder="Type"
+            onChange={(e) => handleFilter(e.target.value)}
+          >
+            <option value="Wired Headphones">Wired</option>
+            <option value="BLUETOOTH HEADPHONES">Bluetooth</option>
           </Select>
         </Box>
         <Box
@@ -60,18 +97,17 @@ const Headphones = () => {
           fontFamily="cursive"
         >
           <Text mr="4"> Sort By : </Text>
-          <Select w="50%" bg="white" color="black" placeholder="Price">
-            <option value=""></option>
-            <option value=""></option>
+          <Select
+            w="50%"
+            bg="white"
+            color="black"
+            placeholder="Price"
+            onChange={(e) => handleSort(e.target.value)}
+          >
+            <option value="low">Low To High</option>
+            <option value="high">High To Low</option>
           </Select>
         </Box>
-      </Box>
-
-      <Box w="90%" m="auto" display="flex" justifyContent="center">
-        <Input bg="white" w="50%" mr="5" placeholder="Search By Name" />
-        <Button bg="red" color="white">
-          Search
-        </Button>
       </Box>
 
       {itemBox && (
@@ -100,7 +136,7 @@ const Headphones = () => {
         m="auto"
         mt="16"
       >
-        {headPhonesData.map((elem, index) => (
+        {headphones.map((elem, index) => (
           <ProductCard key={index} {...elem} />
         ))}
       </Box>
