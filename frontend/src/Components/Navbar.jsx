@@ -19,16 +19,14 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-import {BsFillCartFill} from "react-icons/bs";
-import {useSelector} from "react-redux"
+import { BsFillCartFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const isLogin = useSelector((store)=> store.AuthReducer.isAuth);
+  const isLogin = useSelector((store) => store.AuthReducer.isAuth);
   const navigate = useNavigate();
-  const cartData = useSelector((store)=> store.CartReducer.cartData);
-
-
+  const cartData = useSelector((store) => store.CartReducer.cartData);
 
   return (
     <>
@@ -48,7 +46,7 @@ const Navbar = () => {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box cursor="pointer" onClick={()=> navigate('/')}  >
+            <Box cursor="pointer" onClick={() => navigate("/")}>
               <Image
                 rounded="xl"
                 src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Option_6.gif?v=1667560713"
@@ -65,9 +63,9 @@ const Navbar = () => {
                 fontStyle="italic"
                 cursor="pointer"
                 _hover={{ color: "red" }}
-                fontSize ='xl'
-                fontFamily='cursive'
-                onClick={()=> navigate('/headphones')}
+                fontSize="xl"
+                fontFamily="cursive"
+                onClick={() => navigate("/headphones")}
               >
                 Headphones
               </Text>
@@ -77,12 +75,11 @@ const Navbar = () => {
                 fontStyle="italic"
                 cursor="pointer"
                 _hover={{ color: "red" }}
-                fontSize ='xl'
-                fontFamily='cursive'
-                onClick={()=> navigate('/earphones')}
+                fontSize="xl"
+                fontFamily="cursive"
+                onClick={() => navigate("/earphones")}
               >
-               Earphones
-
+                Earphones
               </Text>
               <Text
                 color="white"
@@ -90,9 +87,9 @@ const Navbar = () => {
                 fontStyle="italic"
                 cursor="pointer"
                 _hover={{ color: "red" }}
-                fontSize ='xl'
-                fontFamily='cursive'
-                onClick={()=> navigate('/speakers')}
+                fontSize="xl"
+                fontFamily="cursive"
+                onClick={() => navigate("/speakers")}
               >
                 Speakers
               </Text>
@@ -100,23 +97,46 @@ const Navbar = () => {
           </HStack>
 
           {!isLogin && (
-            <Button bg="red" color="white" _hover={{ color: "black" }} onClick={()=> navigate('/login')}>
+            <Button
+              bg="red"
+              color="white"
+              _hover={{ color: "black" }}
+              onClick={() => navigate("/login")}
+            >
               Login
             </Button>
           )}
 
           {isLogin && (
+            <Flex
+              alignItems={"center"}
+              justifyContent="space-around"
+              w={{ base: "30%", md: "15%", lg: "10%" }}
+            >
+              {/* <Text color='white'>feiu  dhbuh</Text> */}
 
-           
-            <Flex alignItems={"center"}  justifyContent='space-around' w={{base:'30%' , md:'15%', lg:'10%'}}>
-                {/* <Text color='white'>feiu  dhbuh</Text> */}
-                
-                <BsFillCartFill size='20%' color='white' onClick={()=> navigate('/cart')} />
-                <Text bg='red' p='1' textAlign='center' rounded='3xl' pb='2' position='relative' color='white' cursor='pointer' fontWeight='600' left='-5' h='6' >{cartData.length}</Text>
+              <BsFillCartFill
+                size="20%"
+                color="white"
+                onClick={() => navigate("/cart")}
+              />
+              <Text
+                bg="red"
+                p="1"
+                textAlign="center"
+                rounded="3xl"
+                pb="2"
+                position="relative"
+                color="white"
+                cursor="pointer"
+                fontWeight="600"
+                left="-5"
+                h="6"
+              >
+                {cartData.length}
+              </Text>
 
-                
-              
-                {/* <Image color='white' src='https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Cart-1.png?v=1663762989https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Cart-1.png?v=1663762989' h='30%' w='30%' mr='4' /> */}
+              {/* <Image color='white' src='https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Cart-1.png?v=1663762989https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Cart-1.png?v=1663762989' h='30%' w='30%' mr='4' /> */}
               <Menu>
                 <MenuButton
                   as={Button}
@@ -127,7 +147,6 @@ const Navbar = () => {
                 >
                   <Avatar
                     size={"sm"}
-                    
                     src={
                       "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
                     }

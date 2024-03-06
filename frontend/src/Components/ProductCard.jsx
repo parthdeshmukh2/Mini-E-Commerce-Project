@@ -11,7 +11,7 @@ const ProductCard = (elem) => {
   const handleCart = (payload) => {
     if (isLogin) {
       axios
-        .post("https://ecomm-server.onrender.com/cart/post", payload, {
+        .post(`${process.env.REACT_APP_BASE_URL}/cart/post`, payload, {
           headers: {
             token: "Bearer " + token,
             "Content-Type": "application/json",

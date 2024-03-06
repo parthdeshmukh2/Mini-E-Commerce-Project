@@ -12,18 +12,16 @@ import "../Styles/styles.css";
 import { Pagination, Navigation } from "swiper";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
-const Slider = ({data}) => {
-
-  const isLogin = useSelector((store)=> store.AuthReducer.isAuth);
-  const token = useSelector((store)=> store.AuthReducer.token);
-
+const Slider = ({ data }) => {
+  const isLogin = useSelector((store) => store.AuthReducer.isAuth);
+  const token = useSelector((store) => store.AuthReducer.token);
 
   const handleCart = (payload) => {
     if (isLogin) {
       axios
-        .post("https://ecomm-server.onrender.com/cart/post", payload, {
+        .post(`${process.env.REACT_APP_BASE_URL}/cart/post`, payload, {
           headers: {
             token: "Bearer " + token,
             "Content-Type": "application/json",
@@ -38,7 +36,6 @@ const Slider = ({data}) => {
     }
   };
 
- 
   return (
     <Box m="auto" mt="8" w="90%">
       <Swiper
@@ -81,41 +78,40 @@ const Slider = ({data}) => {
                 cursor="pointer"
               >
                 <Link to={`/product/${elem._id}`}>
-               
-                <Box h="70%">
-                  <Image src={elem.Picture} />
-                </Box>
+                  <Box h="70%">
+                    <Image src={elem.Picture} />
+                  </Box>
 
-                <Text fontSize="md" textAlign="left" fontWeight="700">
-                  {elem.Title}
-                </Text>
-                <Box
-                  display="flex"
-                  w="100%"
-                  justifyContent="space-between"
-                  borderBottom="1px solid gray"
-                  mt="2"
-                >
-                  <Text color="green" fontSize="md">
-                    {elem.Discount}% OFF
+                  <Text fontSize="md" textAlign="left" fontWeight="700">
+                    {elem.Title}
                   </Text>
-                  <Text
-                    color={"gray"}
-                    textDecoration="line-through"
-                    fontSize="md"
+                  <Box
+                    display="flex"
+                    w="100%"
+                    justifyContent="space-between"
+                    borderBottom="1px solid gray"
+                    mt="2"
                   >
-                    {" "}
-                    ₹{elem.StrikeOffPrice}
-                  </Text>
-                  <Text fontSize="md" fontWeight="700">
-                    {" "}
-                    ₹ {elem.Price}
-                  </Text>
-                </Box>
+                    <Text color="green" fontSize="md">
+                      {elem.Discount}% OFF
+                    </Text>
+                    <Text
+                      color={"gray"}
+                      textDecoration="line-through"
+                      fontSize="md"
+                    >
+                      {" "}
+                      ₹{elem.StrikeOffPrice}
+                    </Text>
+                    <Text fontSize="md" fontWeight="700">
+                      {" "}
+                      ₹ {elem.Price}
+                    </Text>
+                  </Box>
 
-                <Text fontSize="md" textAlign="left" color="gray.600" mt="3">
-                  You Save: ₹{elem.Saving} ({elem.Discount}%)
-                </Text>
+                  <Text fontSize="md" textAlign="left" color="gray.600" mt="3">
+                    You Save: ₹{elem.Saving} ({elem.Discount}%)
+                  </Text>
                 </Link>
 
                 <Button
@@ -125,7 +121,7 @@ const Slider = ({data}) => {
                   mt="4"
                   mb="-8"
                   _hover={{ bg: "red", color: "white" }}
-                  onClick={()=>handleCart(elem)}
+                  onClick={() => handleCart(elem)}
                 >
                   ADD TO CART
                 </Button>

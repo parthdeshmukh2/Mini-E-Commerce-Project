@@ -4,16 +4,13 @@ import { useEffect } from "react";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import ProductCard from "../Components/ProductCard";
-import { getData } from "../Redux/AppReducer/action";
-import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 const Speakers = () => {
   const [itemBox, setItemBox] = useState(false);
 
-  const dispatch = useDispatch();
-  const speakersData = useSelector((store) => store.AppReducer.data);
-
   const [speakers, setSpeakers] = useState([]);
+  const [allData, setAllData] = useState([]);
 
   const [filter, setFilter] = useState("");
 
@@ -31,24 +28,26 @@ const Speakers = () => {
   const handleFilter = (value) => {
     console.log(value);
     if (value === "BLUETOOTH EARPHONES") {
-      const filteredData = [...speakers].filter(
-        (elem) => elem.Category === "BLUETOOTH EARPHONES"
+      const filteredData = [...allData].filter(
+        (elem) => elem.Category === "BLUETOOTH SPEAKERS"
       );
       setSpeakers(filteredData);
     } else if (value === "WIRED EARPHONES") {
-      const filteredData = [...speakers].filter(
-        (elem) => elem.Category === "WIRED EARPHONES"
+      const filteredData = [...allData].filter(
+        (elem) => elem.Category === "WIRED SPEAKERS"
       );
       setSpeakers(filteredData);
     }
   };
 
   useEffect(() => {
-    dispatch(getData("https://ecomm-server.onrender.com/speaker"));
-  }, []);
-
-  useEffect(() => {
-    setSpeakers(speakersData);
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/speaker`)
+      .then((res) => {
+        setSpeakers(res.data);
+        setAllData(res.data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -143,6 +142,6 @@ const Speakers = () => {
       <Footer />
     </Box>
   );
-}
+};
 
-export default Speakers
+export default Speakers;

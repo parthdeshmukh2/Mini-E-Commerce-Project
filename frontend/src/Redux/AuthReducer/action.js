@@ -7,7 +7,7 @@ export const userLogin = (body, navigate, lastLocation) => (dispatch) => {
 
   //   console.log("Checked")
   axios
-    .post("https://ecomm-server.onrender.com/user/login", body)
+    .post(`${process.env.REACT_APP_BASE_URL}/user/login`, body)
     .then((res) => {
       // console.log(res.data);
       // alert("Login SuccessFull");

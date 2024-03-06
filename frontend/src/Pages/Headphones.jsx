@@ -4,39 +4,34 @@ import { useEffect } from "react";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import ProductCard from "../Components/ProductCard";
-import { getData } from "../Redux/AppReducer/action";
-import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 const Headphones = () => {
   const [itemBox, setItemBox] = useState(false);
-
-  const dispatch = useDispatch();
-  const headPhonesData = useSelector((store) => store.AppReducer.data);
-
   const [headphones, setHeadphones] = useState([]);
 
   const [filter, setFilter] = useState("");
+  const [allData, setAllData] = useState([]);
 
   const handleSort = (value) => {
-    if (value == "low") {
+    if (value === "low") {
       console.log(value);
-      let sort = [...headphones].sort((a, b) => a.Price - b.Price);
+      let sort = [...allData].sort((a, b) => a.Price - b.Price);
       setHeadphones(sort);
-    } else if (value == "high") {
-      let sort = [...headphones].sort((a, b) => b.Price - a.Price);
+    } else if (value === "high") {
+      let sort = [...allData].sort((a, b) => b.Price - a.Price);
       setHeadphones(sort);
     }
   };
 
   const handleFilter = (value) => {
-    console.log(value);
     if (value === "BLUETOOTH HEADPHONES") {
-      const filteredData = [...headphones].filter(
+      const filteredData = [...allData].filter(
         (elem) => elem.Category === "BLUETOOTH HEADPHONES"
       );
       setHeadphones(filteredData);
     } else if (value === "Wired Headphones") {
-      const filteredData = [...headphones].filter(
+      const filteredData = [...allData].filter(
         (elem) => elem.Category === "Wired Headphones"
       );
       setHeadphones(filteredData);
@@ -44,11 +39,13 @@ const Headphones = () => {
   };
 
   useEffect(() => {
-    dispatch(getData("https://ecomm-server.onrender.com/headphones"));
-  }, []);
-
-  useEffect(() => {
-    setHeadphones(headPhonesData);
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/headphones`)
+      .then((res) => {
+        setHeadphones(res.data);
+        setAllData(res.data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (

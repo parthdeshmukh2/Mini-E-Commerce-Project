@@ -4,18 +4,13 @@ import { useEffect } from "react";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import ProductCard from "../Components/ProductCard";
-import { getData } from "../Redux/AppReducer/action";
-import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 const EarPhones = () => {
   const [itemBox, setItemBox] = useState(false);
-
-  const dispatch = useDispatch();
-  const earPhonesData = useSelector((store) => store.AppReducer.data);
-
   const [earphones, setEarphones] = useState([]);
-
   const [filter, setFilter] = useState("");
+  const [allData, setAllData] = useState([]);
 
   const handleSort = (value) => {
     if (value == "low") {
@@ -31,12 +26,12 @@ const EarPhones = () => {
   const handleFilter = (value) => {
     console.log(value);
     if (value === "BLUETOOTH EARPHONES") {
-      const filteredData = [...earphones].filter(
+      const filteredData = [...allData].filter(
         (elem) => elem.Category === "BLUETOOTH EARPHONES"
       );
       setEarphones(filteredData);
     } else if (value === "WIRED EARPHONES") {
-      const filteredData = [...earphones].filter(
+      const filteredData = [...allData].filter(
         (elem) => elem.Category === "WIRED EARPHONES"
       );
       setEarphones(filteredData);
@@ -44,13 +39,14 @@ const EarPhones = () => {
   };
 
   useEffect(() => {
-    dispatch(getData("https://ecomm-server.onrender.com/earphones"));
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/earphones`)
+      .then((res) => {
+        setEarphones(res.data);
+        setAllData(res.data);
+      })
+      .catch((err) => console.log(err));
   }, []);
-
-  useEffect(() => {
-    setEarphones(earPhonesData);
-  }, []);
-
   return (
     <Box>
       <Navbar />
@@ -143,6 +139,6 @@ const EarPhones = () => {
       <Footer />
     </Box>
   );
-}
+};
 
-export default EarPhones
+export default EarPhones;

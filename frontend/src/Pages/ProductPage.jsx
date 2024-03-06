@@ -13,7 +13,7 @@ const ProductPage = () => {
 
   const getProductData = () => {
     axios
-      .get(`https://ecomm-server.onrender.com/${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/${id}`)
       .then((res) => setSingleProductData(res.data))
       .catch((err) => console.log(err));
   };
